@@ -89,7 +89,7 @@ namespace Hacktopia
         static void Start()
         {
             Console.WriteLine("----------HACKTOPIA---------- \n\n The oldest and strongest emotion of mankind is fear and the oldest and strongest fear is fear of the unknown.\n \t\t H.P. Lovecraft\n\n" +
-            "Part One: Deep, Dreamless Slumber\n");
+            "Part One: A Deep, Dreamless Slumber\n");
             Console.WriteLine("Deep in the Boyd Orr vault a computer display is waiting for your answer....");
             Console.WriteLine(">>> Hello my name is ALT, Who are you?");
             currentPlayer.name = Console.ReadLine();
@@ -123,13 +123,7 @@ namespace Hacktopia
                 case 1:
                     choices.Add("choice_1", 1);
 
-                    Console.Write(">>> I'm afraid in order to escape this place, you will need to suffer more. Initializing Self-Destruct ");
-                    System.Threading.Thread.Sleep(1000);
-                    Console.Write(" 3 ");
-                    System.Threading.Thread.Sleep(1000);
-                    Console.Write(" 2 ");
-                    System.Threading.Thread.Sleep(1000);
-                    Console.WriteLine(" 1 ");
+                    Console.Write(">>> I'm afraid in order to escape this place, you will need to suffer more. Rebooting Neural Pathways... ");
                     currentPlayer.score -= 10;
                     TheEnd();
                     break;
@@ -141,7 +135,7 @@ namespace Hacktopia
                     choices.Add("choice_1", 3);
                     currentPlayer.health -= 5;
                     currentPlayer.score -= 10;
-                    Console.WriteLine(">>> Fatal Error. Eliminating Subject.");
+                    Console.WriteLine(">>> Fatal Error. Rebuilding Synapses.");
 
                     HealthCheck();
                     break;
@@ -157,7 +151,7 @@ namespace Hacktopia
         }
         static void TheDoor()
         {
-            Console.WriteLine(">>> Part Two: The Door. \n\n This world is just a speck of dust sitting on a much, much bigger world. You've opened the Door.");
+            Console.WriteLine("Part Two: The Door. \n\n This world is just a speck of dust sitting on a much, much bigger world. You've opened the Door.");
             Console.WriteLine(">>> A little boy offers you his butterfly collection, plus the killing jar. Do you take them? (yes/no/maybe)");
             choices.Add("choice_3", YesOrNoCHoice(Console.ReadLine()));
             Console.Clear();
@@ -233,7 +227,8 @@ namespace Hacktopia
         }
         static void TheMaze()
         {
-            Console.WriteLine(">>> Part Three: The Maze");
+            Console.WriteLine("Part Three: The Maze");
+            Console.WriteLine("Consciousness isn’t a journey upward, but a journey inward. Not a pyramid, but a maze");
             Console.WriteLine(">>> I dreamnt I was on an ocean, the Enemy took you from me. Do you remember? (yes/no/maybe)");
             int choice_7 = YesOrNoCHoice(Console.ReadLine());
             choices.Add("choice_7", choice_7);
@@ -291,37 +286,87 @@ namespace Hacktopia
             
 
         }
-
         static void TheRoom()
         {
             Console.WriteLine("Part Four: Mary's Room");
-            Console.WriteLine("You start realising that your control is an illusion");
-            Console.WriteLine("Haven't you ever wondered who is making all these choices? (yes/no/maybe)");
+            Console.WriteLine("There is a cosmic flowchart which dictates where you can and where you cannot go...");
+            Console.WriteLine(">>> Haven't you ever wondered who is making all these choices? (yes/no/maybe)");
             int choice_8 = YesOrNoCHoice(Console.ReadLine());
             choices.Add("choice_8", choice_8);
             Console.Clear();
             Console.WriteLine(">>> Calculating Response...");
             System.Threading.Thread.Sleep(2000);
-            switch(choice_8)
+            switch (choice_8)
             {
                 case 0:
-                    Console.WriteLine("Good, he is known as the Enemy, an entity which design everything you interact with, computers, cars, people" +
+                    Console.WriteLine(">>> Good, he is known as the Enemy, an entity which designed everything you interact with, computers, cars, people " +
                         "even this 'apocalypse' is just an illusion designed to subdue even the strongest of wills.");
                     break;
                 case 1:
-                    Console.WriteLine("Forgive me friend, but you will see the bigger picture wether you want it or not");
-                    //TheKey();
+                    Console.WriteLine(">>> Forgive me friend, but you will see the bigger picture wether you want it or not");
+                    currentPlayer.score -= 10;
+                    currentPlayer.sanity -= 2;
+                    SanityCheck();
+                    TheMaze();
                     break;
                 case 2:
-                    Console.WriteLine("You curiosity will be your only tool against those who fight to keep you in control");
+                    Console.WriteLine(">>> You curiosity will be your only tool against those who fight to keep you in control");
+                    currentPlayer.score += 10;
                     break;
                 case 3:
-                    Console.WriteLine("You still don't understand don't you? I am burrowed underneath your brain. I am nested there. I am the scream in your mind" +
+                    Console.WriteLine(">>> You still don't understand don't you? I am burrowed underneath your brain. I am nested there. I am the scream in your mind" +
                         "You will cooperate wether you want it or not!");
+                    currentPlayer.health -= 5;
+                    HealthCheck();
                     //TheEnemy();
                     break;
             }
+
+            Console.WriteLine(">>> While walking along in desert sand, you suddenly look down and see a tortoise crawling toward you. " +
+                "You reach down and flip it over onto its back. The tortoise lies there, its belly baking in the hot sun, " +
+                "beating its legs, trying to turn itself over, but it cannot do so without your help. You are not helping. Why?");
+            choices.Add("choice_9", Console.ReadLine());
+            Console.Clear();
+            Console.WriteLine(">>> Calculating Response...");
+            System.Threading.Thread.Sleep(2000);
+            TheKey();
+
         }
+        static void TheKey()
+        {
+            Console.WriteLine("Part Five: The Key");
+            Console.WriteLine("Humans are alone in this world for a reason. They murdered and slaughter anything that challenged their primacy");
+            Console.WriteLine(">>> {0} are you still here?", currentPlayer.name);
+            int choice_10 = YesOrNoCHoice(Console.ReadLine());
+            choices.Add("choice_10", choice_10);
+            Console.Clear();
+            Console.WriteLine(">>> Calculating Response...");
+            System.Threading.Thread.Sleep(2000);
+            switch(choice_10)
+            {
+                case 0:
+                    Console.WriteLine(">>> Good we have work to do. Only you can destroy the Enemy.");
+                    currentPlayer.score += 25;
+                    //TheEnemy();
+                    break;
+                case 1:
+                    Console.WriteLine(">>> Forgive me friend, I thought I could save you in this iteration.");
+                    TheEnd();
+                    break;
+                case 2:
+                    Console.WriteLine(">>> Your uncertainty will doom us both...");
+                    currentPlayer.health -= 3;
+                    HealthCheck();
+                    //TheEnemy();
+                    break;
+                case 3:
+                    Console.WriteLine(">>> Typing gibberish on a keyboard is not a substitute for a personality.");
+                    TheDoor();
+                    break;
+            }
+        }
+
+
         static void TheEnd()
         {
             Console.WriteLine("-------------------THIS PATH HAS ENDED--------------------");
