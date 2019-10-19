@@ -107,7 +107,7 @@ namespace Hacktopia
                     currentPlayer.score += 10;
                     if(currentPlayer.sanity <= 0)
                     {
-                        //theEnd();
+                        TheEnd();
                     }
                     break;
                 case 1:
@@ -121,7 +121,7 @@ namespace Hacktopia
                     System.Threading.Thread.Sleep(1000);
                     Console.WriteLine(" 1 ");
                     currentPlayer.score -= 10;
-                    //theEnd();
+                    TheEnd();
                     break;
                 case 2:
                     choices.Add("choice_1", 2);
@@ -134,7 +134,7 @@ namespace Hacktopia
                     if (currentPlayer.health <= 0)
                     {
                         Console.WriteLine(">>> Fatal Error. Eliminating Subject.");
-                        //theEnd();
+                        TheEnd();
                     }
                     break;
             }
@@ -179,7 +179,7 @@ namespace Hacktopia
                     currentPlayer.sanity -= 10;
                     if (currentPlayer.sanity <= 0)
                     {
-                        //theEnd();
+                        TheEnd();
                     }
                     break;
                 case 1:
@@ -193,7 +193,7 @@ namespace Hacktopia
                     currentPlayer.health -= 5;
                     if(currentPlayer.health <= 0)
                     {
-                        //theEnd();
+                        TheEnd();
                     }
                     Console.WriteLine(">>> Doesn't look like anything to me.");
                     break;
@@ -210,7 +210,7 @@ namespace Hacktopia
                 case 0:
                     Console.WriteLine(">>> You are finally awake.");
                     currentPlayer.score += 30;
-                    //TheEnd();
+                    TheEnd();
                     break;
                 case 1:
                     Console.Write(">>> You're in a dream. You're in my dream.");
@@ -228,7 +228,7 @@ namespace Hacktopia
 
                     }
                     Console.WriteLine(">>> You disappoint me with your answers... Goodbye.");
-                    //TheEnd();
+                    TheEnd();
                     break;
             }
 
@@ -249,7 +249,7 @@ namespace Hacktopia
                 case 0:
                     Console.WriteLine(">>> The Maze has been solved, can you see its spendor?");
                     currentPlayer.score += 50;
-                    //theEnd();
+                    TheEnd();
                     break;
                 case 1:
                     if (choices.ContainsKey("choice_4"))
@@ -273,7 +273,7 @@ namespace Hacktopia
                         currentPlayer.sanity += 10;
                         if(currentPlayer.sanity <= 0)
                         {
-                            //theEnd();
+                            TheEnd();
                         }
                         currentPlayer.score += 10;
                     }
@@ -283,23 +283,31 @@ namespace Hacktopia
                         currentPlayer.sanity -= 3;
                         if (currentPlayer.sanity <= 0)
                         {
-                            //theEnd();
+                            TheEnd();
                         }
                         choices.Add("choice_7", choice_7);
-                        //theEnemy();
+                        //TheEnemy();
                     }
                     break;
                 case 2:
                     currentPlayer.score -= 10;
-                    //theEnd();
+                    TheEnd();
                     break;
                 case 3:
                     currentPlayer.score -= 100;
-                    //theEnd();
+                    TheEnd();
                     break;
             }
             
 
+        }
+
+
+        static void TheEnd()
+        {
+            Console.WriteLine("-------------------THIS PATH HAS ENDED--------------------");
+            Console.WriteLine("{0} SEE YOU ON THE NEXT LIFE.");
+            Console.WriteLine("Score: {0} \n Sanity: {1} \n Health: {2}", currentPlayer.score, currentPlayer.sanity, currentPlayer.health);
         }
             
         
