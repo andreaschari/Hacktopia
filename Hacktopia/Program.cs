@@ -22,7 +22,7 @@ namespace Hacktopia
             }
             else if ((int) choices["choice_2"] == 1)
             {
-                //TheMaze();
+                TheMaze();
             }
             else if ((int) choices["choice_2"] == 2)
             {
@@ -147,7 +147,7 @@ namespace Hacktopia
             Console.WriteLine(">>> Calculating Response...");
             System.Threading.Thread.Sleep(2000);
 
-            Console.WriteLine(">>> You are in a record store, your choices are The Bermuda Triangle(left), Pheadra(center), The Wall(right), which on do you take?");
+            Console.WriteLine(">>> You are in a record store, your choices of vinyl are The Bermuda Triangle(left), Pheadra(center), The Wall(right), which on do you take?");
             choices.Add("choices_4", DirectionChoice(Console.ReadLine()));
             Console.Clear();
             Console.WriteLine(">>> Calculating Response...");
@@ -181,7 +181,7 @@ namespace Hacktopia
                     break;
             }
 
-            Console.WriteLine("Do you know where you are?");
+            Console.WriteLine(">>> Do you know where you are?");
             int choice_6 = YesOrNoCHoice(Console.ReadLine());
             choices.Add("choice_6", choice_6);
             Console.WriteLine(">>> Calculating Response...");
@@ -197,9 +197,11 @@ namespace Hacktopia
                 case 1:
                     Console.Write(">>> You're in a dream. You're in my dream.");
                     currentPlayer.score -= 20;
+                    TheMaze();
                     break;
                 case 2:
                     Console.WriteLine(">>> Are your choices really yours?");
+                    //TheEnd();
                     break;
                 case 3:
                     currentPlayer.health -= 5;
@@ -207,6 +209,65 @@ namespace Hacktopia
                     //TheEnd();
                     break;
             }
+
+        }
+
+        static void TheMaze()
+        {
+            Console.WriteLine(">>> Part Three: The Maze");
+            Console.WriteLine(">>> I dreamnt I was on an ocean, the Others took you from me. Do you remember?");
+            int choice_7 = YesOrNoCHoice(Console.ReadLine());
+            choices.Add("choice_7", choice_7);
+            Console.Clear();
+            Console.WriteLine(">>> Calculating Response...");
+            System.Threading.Thread.Sleep(2000);
+
+            switch(choice_7)
+            {
+                case 0:
+                    Console.WriteLine(">>> The Maze has been solved, can you see its spendor?");
+                    currentPlayer.score += 50;
+                    //theEnd();
+                    break;
+                case 1:
+                    if (choices.ContainsKey("choice_4"))
+                    {
+                        int choice = (int)choices["choice_4"];
+                        switch (choice)
+                        {
+                            case 0:
+                                Console.WriteLine(">>> We were on the Bermuda Triangle");
+                                break;
+                            case 1:
+                                Console.WriteLine(">>> We were on the beach with Pheadra and the kids");
+                                break;
+                            case 2:
+                                Console.WriteLine(">>> We were listening to Pink Floyd");
+                                break;
+                            case 3:
+                                Console.WriteLine(">>> Are you real?");
+                                break;
+                        }
+                        currentPlayer.sanity += 10;
+                        currentPlayer.score += 10;
+                    }
+                    else
+                    {
+                        Console.WriteLine(">>> There are some mornings when I first wake up for a split second I forget where I am, when I am");
+                        currentPlayer.sanity -= 3;
+                        choices.Add("choice_7", choice_7);
+                    }
+                    break;
+                case 2:
+                    currentPlayer.score -= 10;
+                    //theEnd();
+                    break;
+                case 3:
+                    currentPlayer.score -= 100;
+                    //theEnd();
+                    break;
+            }
+            
 
         }
             
