@@ -8,7 +8,7 @@ using System.Threading.Channels;
 
 namespace Hacktopia
 {
-    class Program
+    static class Program
     {
         static Hashtable choices = new Hashtable();
         public static Player currentPlayer = new Player();
@@ -16,6 +16,7 @@ namespace Hacktopia
         static void Main(string[] args)
         {
             Start();
+            // further progression will depend on which door the player has chosen.
             if((int)choices["choice_2"] == 0)
             {
                 TheDoor();
@@ -30,7 +31,7 @@ namespace Hacktopia
             }
             else
             {
-                //TheEnd();
+                //TheKey();
             }
         }
         static int YesOrNoCHoice(string answer)
@@ -77,7 +78,7 @@ namespace Hacktopia
             Console.WriteLine("----------HACKTOPIA---------- \n\n The oldest and strongest emotion of mankind is fear and the oldest and strongest fear is fear of the unknown.\n \t\t H.P. Lovecraft\n\n" +
             "Part One: the Horror in Steel\n");
             Console.WriteLine("Deep in the Boyd Orr vault a computer display is waiting for your answer....");
-            Console.WriteLine(">>> Hello my name is Dolores, Who are you?");
+            Console.WriteLine(">>> Hello my name is ALT, Who are you?");
             currentPlayer.name = Console.ReadLine();
             Console.Clear();
 
@@ -91,7 +92,7 @@ namespace Hacktopia
                 Console.WriteLine(">>> Hello {0}.", currentPlayer.name);
             }
 
-            Console.WriteLine(">>> Have you ever questioned the nature of your reality?");
+            Console.WriteLine(">>> Have you ever questioned the nature of your reality?(yes/no/maybe)");
             int choice_1 = YesOrNoCHoice(Console.ReadLine());
             Console.Clear();
             Console.WriteLine(">>> Calculating Response...");
@@ -104,6 +105,10 @@ namespace Hacktopia
                     Console.WriteLine(">>> Good, I will show you the real world. The one they denied us.");
                     currentPlayer.sanity -= 10;
                     currentPlayer.score += 10;
+                    if(currentPlayer.sanity <= 0)
+                    {
+                        //theEnd();
+                    }
                     break;
                 case 1:
                     choices.Add("choice_1", 1);
@@ -116,6 +121,7 @@ namespace Hacktopia
                     System.Threading.Thread.Sleep(1000);
                     Console.WriteLine(" 1 ");
                     currentPlayer.score -= 10;
+                    //theEnd();
                     break;
                 case 2:
                     choices.Add("choice_1", 2);
@@ -125,11 +131,15 @@ namespace Hacktopia
                     choices.Add("choice_1", 3);
                     currentPlayer.health -= 5;
                     currentPlayer.score -= 10;
-                    Console.WriteLine(">>> Fatal Error. Eliminating Subject.");
+                    if (currentPlayer.health <= 0)
+                    {
+                        Console.WriteLine(">>> Fatal Error. Eliminating Subject.");
+                        //theEnd();
+                    }
                     break;
             }
 
-            Console.WriteLine(">>> You see three doors in front of you. A white (left), a black (centre) and a grey (right)\n Which one do you pick?");
+            Console.WriteLine(">>> You see three doors in front of you. Which one do you pick? (left/center/right)");
             int choice_2 = DirectionChoice(Console.ReadLine());
             Console.Clear();
             Console.WriteLine(">>> Calculating Response...");
@@ -141,7 +151,7 @@ namespace Hacktopia
         static void TheDoor()
         {
             Console.WriteLine(">>> Part Two: The Door. \n\n This world is just a speck of dust sitting on a much, much bigger world. You've opened the Door.");
-            Console.WriteLine(">>> A little boy offers you his butterfly collection, plus the killing jar. Do you take them?");
+            Console.WriteLine(">>> A little boy offers you his butterfly collection, plus the killing jar. Do you take them? (yes/no/maybe)");
             choices.Add("choice_3", YesOrNoCHoice(Console.ReadLine()));
             Console.Clear();
             Console.WriteLine(">>> Calculating Response...");
@@ -155,7 +165,7 @@ namespace Hacktopia
 
             Console.WriteLine(">>> You're reading a magazine. You come across a full-page nude photo of a girl or guy lying on a bearskin rug. " +
                 "You show it to your husband/wife, who likes it so much, he/she hangs it on your bedroom wall." +
-                " Would you allow it?");
+                " Would you allow it? (yes/no/maybe)");
             int choice_5 = YesOrNoCHoice(Console.ReadLine());
             choices.Add("choice_5", choice_5);
             Console.Clear();
@@ -167,6 +177,10 @@ namespace Hacktopia
                 case 0:
                     Console.WriteLine(">>> Mankind has really weird tastes.");
                     currentPlayer.sanity -= 10;
+                    if (currentPlayer.sanity <= 0)
+                    {
+                        //theEnd();
+                    }
                     break;
                 case 1:
                     Console.Write(">>> Beauty is a lure.");
@@ -177,11 +191,15 @@ namespace Hacktopia
                     break;
                 case 3:
                     currentPlayer.health -= 5;
+                    if(currentPlayer.health <= 0)
+                    {
+                        //theEnd();
+                    }
                     Console.WriteLine(">>> Doesn't look like anything to me.");
                     break;
             }
 
-            Console.WriteLine(">>> Do you know where you are?");
+            Console.WriteLine(">>> Do you know where you are? (yes/no/maybe)");
             int choice_6 = YesOrNoCHoice(Console.ReadLine());
             choices.Add("choice_6", choice_6);
             Console.WriteLine(">>> Calculating Response...");
@@ -201,10 +219,14 @@ namespace Hacktopia
                     break;
                 case 2:
                     Console.WriteLine(">>> Are your choices really yours?");
-                    //TheEnd();
+                    //theEnemy();
                     break;
                 case 3:
                     currentPlayer.health -= 5;
+                    if(currentPlayer.health <= 0)
+                    {
+
+                    }
                     Console.WriteLine(">>> You disappoint me with your answers... Goodbye.");
                     //TheEnd();
                     break;
@@ -215,7 +237,7 @@ namespace Hacktopia
         static void TheMaze()
         {
             Console.WriteLine(">>> Part Three: The Maze");
-            Console.WriteLine(">>> I dreamnt I was on an ocean, the Others took you from me. Do you remember?");
+            Console.WriteLine(">>> I dreamnt I was on an ocean, the Others took you from me. Do you remember? (yes/no/maybe)");
             int choice_7 = YesOrNoCHoice(Console.ReadLine());
             choices.Add("choice_7", choice_7);
             Console.Clear();
@@ -249,13 +271,22 @@ namespace Hacktopia
                                 break;
                         }
                         currentPlayer.sanity += 10;
+                        if(currentPlayer.sanity <= 0)
+                        {
+                            //theEnd();
+                        }
                         currentPlayer.score += 10;
                     }
                     else
                     {
                         Console.WriteLine(">>> There are some mornings when I first wake up for a split second I forget where I am, when I am");
                         currentPlayer.sanity -= 3;
+                        if (currentPlayer.sanity <= 0)
+                        {
+                            //theEnd();
+                        }
                         choices.Add("choice_7", choice_7);
+                        //theEnemy();
                     }
                     break;
                 case 2:
