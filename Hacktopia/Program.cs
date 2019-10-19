@@ -307,6 +307,8 @@ namespace Hacktopia
             Console.WriteLine("-------------------THIS PATH HAS ENDED--------------------");
             Console.WriteLine("{0} SEE YOU ON THE NEXT LIFE.", currentPlayer.name);
             Console.WriteLine("Score: {0} \nSanity: {1} \nHealth: {2}", currentPlayer.score, currentPlayer.sanity, currentPlayer.health);
+            Environment.Exit(0);
+            ;
         }
             
         
