@@ -27,7 +27,7 @@ namespace Hacktopia
             }
             else if ((int) choices["choice_2"] == 2)
             {
-                //TheRoom();
+                TheRoom();
             }
             else
             {
@@ -234,7 +234,7 @@ namespace Hacktopia
         static void TheMaze()
         {
             Console.WriteLine(">>> Part Three: The Maze");
-            Console.WriteLine(">>> I dreamnt I was on an ocean, the Others took you from me. Do you remember? (yes/no/maybe)");
+            Console.WriteLine(">>> I dreamnt I was on an ocean, the Enemy took you from me. Do you remember? (yes/no/maybe)");
             int choice_7 = YesOrNoCHoice(Console.ReadLine());
             choices.Add("choice_7", choice_7);
             Console.Clear();
@@ -281,7 +281,7 @@ namespace Hacktopia
                     break;
                 case 2:
                     currentPlayer.score -= 10;
-                    TheEnd();
+                    TheRoom();
                     break;
                 case 3:
                     currentPlayer.score -= 100;
@@ -290,6 +290,37 @@ namespace Hacktopia
             }
             
 
+        }
+
+        static void TheRoom()
+        {
+            Console.WriteLine("Part Four: Mary's Room");
+            Console.WriteLine("You start realising that your control is an illusion");
+            Console.WriteLine("Haven't you ever wondered who is making all these choices? (yes/no/maybe)");
+            int choice_8 = YesOrNoCHoice(Console.ReadLine());
+            choices.Add("choice_8", choice_8);
+            Console.Clear();
+            Console.WriteLine(">>> Calculating Response...");
+            System.Threading.Thread.Sleep(2000);
+            switch(choice_8)
+            {
+                case 0:
+                    Console.WriteLine("Good, he is known as the Enemy, an entity which design everything you interact with, computers, cars, people" +
+                        "even this 'apocalypse' is just an illusion designed to subdue even the strongest of wills.");
+                    break;
+                case 1:
+                    Console.WriteLine("Forgive me friend, but you will see the bigger picture wether you want it or not");
+                    //TheKey();
+                    break;
+                case 2:
+                    Console.WriteLine("You curiosity will be your only tool against those who fight to keep you in control");
+                    break;
+                case 3:
+                    Console.WriteLine("You still don't understand don't you? I am burrowed underneath your brain. I am nested there. I am the scream in your mind" +
+                        "You will cooperate wether you want it or not!");
+                    //TheEnemy();
+                    break;
+            }
         }
         static void TheEnd()
         {

@@ -10,5 +10,6 @@ namespace Hacktopia
         public int health = 10;
         public int sanity = 10;
         public int score = 0;
+
     }
 }
