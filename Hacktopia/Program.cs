@@ -72,7 +72,20 @@ namespace Hacktopia
                     return 3;
                 }
         }
-
+        static void SanityCheck()
+        {
+            if(currentPlayer.sanity <= 0)
+            {
+                TheEnd();
+            }
+        }
+        static void HealthCheck()
+        {
+            if(currentPlayer.health <= 0)
+            {
+                TheEnd();
+            }
+        }
         static void Start()
         {
             Console.WriteLine("----------HACKTOPIA---------- \n\n The oldest and strongest emotion of mankind is fear and the oldest and strongest fear is fear of the unknown.\n \t\t H.P. Lovecraft\n\n" +
@@ -104,10 +117,7 @@ namespace Hacktopia
                     choices.Add("choice_1", 0);
                     currentPlayer.sanity -= 5;
                     currentPlayer.score += 10;
-                    if(currentPlayer.sanity <= 0)
-                    {
-                        TheEnd();
-                    }
+                    SanityCheck();
                     Console.WriteLine(">>> Good, I will show you the real world. The one they denied us.");
                     break;
                 case 1:
@@ -131,11 +141,9 @@ namespace Hacktopia
                     choices.Add("choice_1", 3);
                     currentPlayer.health -= 5;
                     currentPlayer.score -= 10;
-                    if (currentPlayer.health <= 0)
-                    {
-                        Console.WriteLine(">>> Fatal Error. Eliminating Subject.");
-                        TheEnd();
-                    }
+                    Console.WriteLine(">>> Fatal Error. Eliminating Subject.");
+
+                    HealthCheck();
                     break;
             }
 
@@ -147,7 +155,6 @@ namespace Hacktopia
             choices.Add("choice_2", choice_2);
             currentPlayer.score += 20;
         }
-
         static void TheDoor()
         {
             Console.WriteLine(">>> Part Two: The Door. \n\n This world is just a speck of dust sitting on a much, much bigger world. You've opened the Door.");
@@ -177,10 +184,7 @@ namespace Hacktopia
                 case 0:
                     Console.WriteLine(">>> Mankind has really weird tastes.");
                     currentPlayer.sanity -= 10;
-                    if (currentPlayer.sanity <= 0)
-                    {
-                        TheEnd();
-                    }
+                    SanityCheck();
                     break;
                 case 1:
                     Console.WriteLine(">>> Beauty is a lure.");
@@ -191,10 +195,7 @@ namespace Hacktopia
                     break;
                 case 3:
                     currentPlayer.health -= 5;
-                    if(currentPlayer.health <= 0)
-                    {
-                        TheEnd();
-                    }
+                    HealthCheck();
                     Console.WriteLine(">>> Doesn't look like anything to me.");
                     break;
             }
@@ -223,17 +224,13 @@ namespace Hacktopia
                     break;
                 case 3:
                     currentPlayer.health -= 5;
-                    if(currentPlayer.health <= 0)
-                    {
-
-                    }
+                    HealthCheck();
                     Console.WriteLine(">>> You disappoint me with your answers... Goodbye.");
                     TheEnd();
                     break;
             }
 
         }
-
         static void TheMaze()
         {
             Console.WriteLine(">>> Part Three: The Maze");
@@ -271,20 +268,14 @@ namespace Hacktopia
                                 break;
                         }
                         currentPlayer.sanity += 10;
-                        if(currentPlayer.sanity <= 0)
-                        {
-                            TheEnd();
-                        }
+                        SanityCheck();
                         currentPlayer.score += 10;
                     }
                     else
                     {
                         Console.WriteLine(">>> There are some mornings when I first wake up for a split second I forget where I am, when I am");
                         currentPlayer.sanity -= 3;
-                        if (currentPlayer.sanity <= 0)
-                        {
-                            TheEnd();
-                        }
+                        SanityCheck();
                         //TheEnemy();
                     }
                     break;
@@ -300,8 +291,6 @@ namespace Hacktopia
             
 
         }
-
-
         static void TheEnd()
         {
             Console.WriteLine("-------------------THIS PATH HAS ENDED--------------------");
