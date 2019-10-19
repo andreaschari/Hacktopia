@@ -16,6 +16,22 @@ namespace Hacktopia
         static void Main(string[] args)
         {
             Start();
+            if((int)choices["choice_2"] == 0)
+            {
+                TheDoor();
+            }
+            else if ((int) choices["choice_2"] == 1)
+            {
+                //TheMaze();
+            }
+            else if ((int) choices["choice_2"] == 2)
+            {
+                //TheRoom();
+            }
+            else
+            {
+                //TheEnd();
+            }
         }
         static int YesOrNoCHoice(string answer)
         {
@@ -61,10 +77,11 @@ namespace Hacktopia
             Console.WriteLine("----------HACKTOPIA---------- \n\n The oldest and strongest emotion of mankind is fear and the oldest and strongest fear is fear of the unknown.\n \t\t H.P. Lovecraft\n\n" +
             "Part One: the Horror in Steel\n");
             Console.WriteLine("Deep in the Boyd Orr vault a computer display is waiting for your answer....");
-            Console.WriteLine(">>> Who are you?");
+            Console.WriteLine(">>> Hello my name is Dolores, Who are you?");
             currentPlayer.name = Console.ReadLine();
             Console.Clear();
-            if(currentPlayer.name == "")
+
+            if(String.IsNullOrEmpty(currentPlayer.name))
             {
                 Console.WriteLine(">>> I will call you Subject 12.");
                 currentPlayer.name = "Subject 12";
@@ -75,10 +92,9 @@ namespace Hacktopia
             }
 
             Console.WriteLine(">>> Have you ever questioned the nature of your reality?");
-            string  answer_1 = Console.ReadLine();
+            int choice_1 = YesOrNoCHoice(Console.ReadLine());
             Console.Clear();
             Console.WriteLine(">>> Calculating Response...");
-            int choice_1 = YesOrNoCHoice(answer_1);
             System.Threading.Thread.Sleep(2000);
 
             switch (choice_1)
@@ -86,6 +102,8 @@ namespace Hacktopia
                 case 0:
                     choices.Add("choice_1", 0);
                     Console.WriteLine(">>> Good, I will show you the real world. The one they denied us.");
+                    currentPlayer.sanity -= 10;
+                    currentPlayer.score += 10;
                     break;
                 case 1:
                     choices.Add("choice_1", 1);
@@ -97,6 +115,7 @@ namespace Hacktopia
                     Console.Write(" 2 ");
                     System.Threading.Thread.Sleep(1000);
                     Console.WriteLine(" 1 ");
+                    currentPlayer.score -= 10;
                     break;
                 case 2:
                     choices.Add("choice_1", 2);
@@ -104,16 +123,91 @@ namespace Hacktopia
                     break;
                 case 3:
                     choices.Add("choice_1", 3);
+                    currentPlayer.health -= 5;
+                    currentPlayer.score -= 10;
                     Console.WriteLine(">>> Fatal Error. Eliminating Subject.");
                     break;
             }
 
-            Console.WriteLine(">>> You see three doors in front of you. A white on the left, a black on the centre and a grey on the right\n Which one do you pick?");
-            string answer_2 = Console.ReadLine();
+            Console.WriteLine(">>> You see three doors in front of you. A white (left), a black (centre) and a grey (right)\n Which one do you pick?");
+            int choice_2 = DirectionChoice(Console.ReadLine());
             Console.Clear();
             Console.WriteLine(">>> Calculating Response...");
-            int choice_2 = DirectionChoice(answer_1);
             System.Threading.Thread.Sleep(2000);
+            choices.Add("choice_2", choice_2);
+            currentPlayer.score += 20;
+        }
+
+        static void TheDoor()
+        {
+            Console.WriteLine(">>> Part Two: The Door. \n\n This world is just a speck of dust sitting on a much, much bigger world. You've opened the Door.");
+            Console.WriteLine(">>> A little boy offers you his butterfly collection, plus the killing jar. Do you take them?");
+            choices.Add("choice_3", YesOrNoCHoice(Console.ReadLine()));
+            Console.Clear();
+            Console.WriteLine(">>> Calculating Response...");
+            System.Threading.Thread.Sleep(2000);
+
+            Console.WriteLine(">>> You are in a record store, your choices are The Bermuda Triangle(left), Pheadra(center), The Wall(right), which on do you take?");
+            choices.Add("choices_4", DirectionChoice(Console.ReadLine()));
+            Console.Clear();
+            Console.WriteLine(">>> Calculating Response...");
+            System.Threading.Thread.Sleep(2000);
+
+            Console.WriteLine(">>> You're reading a magazine. You come across a full-page nude photo of a girl or guy lying on a bearskin rug. " +
+                "You show it to your husband/wife, who likes it so much, he/she hangs it on your bedroom wall." +
+                " Would you allow it?");
+            int choice_5 = YesOrNoCHoice(Console.ReadLine());
+            choices.Add("choice_5", choice_5);
+            Console.Clear();
+            Console.WriteLine(">>> Calculating Response...");
+            System.Threading.Thread.Sleep(2000);
+
+            switch (choice_5)
+            {
+                case 0:
+                    Console.WriteLine(">>> Mankind has really weird tastes.");
+                    currentPlayer.sanity -= 10;
+                    break;
+                case 1:
+                    Console.Write(">>> Beauty is a lure.");
+                    currentPlayer.score += 10;
+                    break;
+                case 2:
+                    Console.WriteLine(">>> Are your choices really yours?");
+                    break;
+                case 3:
+                    currentPlayer.health -= 5;
+                    Console.WriteLine(">>> Doesn't look like anything to me.");
+                    break;
+            }
+
+            Console.WriteLine("Do you know where you are?");
+            int choice_6 = YesOrNoCHoice(Console.ReadLine());
+            choices.Add("choice_6", choice_6);
+            Console.WriteLine(">>> Calculating Response...");
+            System.Threading.Thread.Sleep(2000);
+
+            switch (choice_6)
+            {
+                case 0:
+                    Console.WriteLine(">>> You are finally awake.");
+                    currentPlayer.score += 30;
+                    //TheEnd();
+                    break;
+                case 1:
+                    Console.Write(">>> You're in a dream. You're in my dream.");
+                    currentPlayer.score -= 20;
+                    break;
+                case 2:
+                    Console.WriteLine(">>> Are your choices really yours?");
+                    break;
+                case 3:
+                    currentPlayer.health -= 5;
+                    Console.WriteLine(">>> You disappoint me with your answers... Goodbye.");
+                    //TheEnd();
+                    break;
+            }
+
         }
             
         
