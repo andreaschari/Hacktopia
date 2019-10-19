@@ -76,7 +76,7 @@ namespace Hacktopia
         static void Start()
         {
             Console.WriteLine("----------HACKTOPIA---------- \n\n The oldest and strongest emotion of mankind is fear and the oldest and strongest fear is fear of the unknown.\n \t\t H.P. Lovecraft\n\n" +
-            "Part One: the Horror in Steel\n");
+            "Part One: Deep, Dreamless Slumber\n");
             Console.WriteLine("Deep in the Boyd Orr vault a computer display is waiting for your answer....");
             Console.WriteLine(">>> Hello my name is ALT, Who are you?");
             currentPlayer.name = Console.ReadLine();
@@ -102,13 +102,13 @@ namespace Hacktopia
             {
                 case 0:
                     choices.Add("choice_1", 0);
-                    Console.WriteLine(">>> Good, I will show you the real world. The one they denied us.");
-                    currentPlayer.sanity -= 10;
+                    currentPlayer.sanity -= 5;
                     currentPlayer.score += 10;
                     if(currentPlayer.sanity <= 0)
                     {
                         TheEnd();
                     }
+                    Console.WriteLine(">>> Good, I will show you the real world. The one they denied us.");
                     break;
                 case 1:
                     choices.Add("choice_1", 1);
@@ -183,7 +183,7 @@ namespace Hacktopia
                     }
                     break;
                 case 1:
-                    Console.Write(">>> Beauty is a lure.");
+                    Console.WriteLine(">>> Beauty is a lure.");
                     currentPlayer.score += 10;
                     break;
                 case 2:
@@ -285,7 +285,6 @@ namespace Hacktopia
                         {
                             TheEnd();
                         }
-                        choices.Add("choice_7", choice_7);
                         //TheEnemy();
                     }
                     break;
@@ -306,8 +305,8 @@ namespace Hacktopia
         static void TheEnd()
         {
             Console.WriteLine("-------------------THIS PATH HAS ENDED--------------------");
-            Console.WriteLine("{0} SEE YOU ON THE NEXT LIFE.");
-            Console.WriteLine("Score: {0} \n Sanity: {1} \n Health: {2}", currentPlayer.score, currentPlayer.sanity, currentPlayer.health);
+            Console.WriteLine("{0} SEE YOU ON THE NEXT LIFE.", currentPlayer.name);
+            Console.WriteLine("Score: {0} \nSanity: {1} \nHealth: {2}", currentPlayer.score, currentPlayer.sanity, currentPlayer.health);
         }
             
         
