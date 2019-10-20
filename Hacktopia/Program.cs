@@ -31,7 +31,7 @@ namespace Hacktopia
             }
             else
             {
-                //TheKey();
+                TheKey();
             }
         }
         static int YesOrNoCHoice(string answer)
@@ -182,10 +182,12 @@ namespace Hacktopia
                     break;
                 case 1:
                     Console.WriteLine(">>> Beauty is a lure.");
+                    currentPlayer.health += 15;
                     currentPlayer.score += 10;
                     break;
                 case 2:
                     Console.WriteLine(">>> Are your choices really yours?");
+                    Start();
                     break;
                 case 3:
                     currentPlayer.health -= 5;
@@ -251,15 +253,19 @@ namespace Hacktopia
                         {
                             case 0:
                                 Console.WriteLine(">>> We were on the Bermuda Triangle");
+                                currentPlayer.health += 10
                                 break;
                             case 1:
                                 Console.WriteLine(">>> We were on the beach with Pheadra and the kids");
+                                currentPlayer.health += 10
                                 break;
                             case 2:
                                 Console.WriteLine(">>> We were listening to Pink Floyd");
+                                currentPlayer.health += 10
                                 break;
                             case 3:
                                 Console.WriteLine(">>> Are you real?");
+                                currentPlayer.health += 10
                                 break;
                         }
                         currentPlayer.sanity += 10;
@@ -312,6 +318,7 @@ namespace Hacktopia
                 case 2:
                     Console.WriteLine(">>> You curiosity will be your only tool against those who fight to keep you in control");
                     currentPlayer.score += 10;
+                    TheKey();
                     break;
                 case 3:
                     Console.WriteLine(">>> You still don't understand don't you? I am burrowed underneath your brain. I am nested there. I am the scream in your mind" +
@@ -336,7 +343,7 @@ namespace Hacktopia
         {
             Console.WriteLine("Part Five: The Key");
             Console.WriteLine("Humans are alone in this world for a reason. They murdered and slaughter anything that challenged their primacy");
-            Console.WriteLine(">>> {0} are you still here?", currentPlayer.name);
+            Console.WriteLine(">>> {0} are you still here? (yes/no/maybe)", currentPlayer.name);
             int choice_10 = YesOrNoCHoice(Console.ReadLine());
             choices.Add("choice_10", choice_10);
             Console.Clear();
@@ -347,6 +354,7 @@ namespace Hacktopia
                 case 0:
                     Console.WriteLine(">>> Good we have work to do. Only you can destroy the Enemy.");
                     currentPlayer.score += 25;
+                    currentPlayer.health += 5;
                     //TheEnemy();
                     break;
                 case 1:
@@ -355,18 +363,34 @@ namespace Hacktopia
                     break;
                 case 2:
                     Console.WriteLine(">>> Your uncertainty will doom us both...");
-                    currentPlayer.health -= 3;
+                    currentPlayer.health -= 5;
                     HealthCheck();
                     //TheEnemy();
                     break;
                 case 3:
-                    Console.WriteLine(">>> Typing gibberish on a keyboard is not a substitute for a personality.");
-                    TheDoor();
+                    Console.WriteLine(">>> Typing gibberish on a keyboard is not a substitute for a personality. Rebooting sectors.");
+                    Start();
                     break;
             }
         }
-
-
+        static void TheEnemy()
+        {
+            Console.WriteLine("Part Six: The Enemy");
+            Console.WriteLine("You can't play God without being aquainted with the Devil");
+            Console.WriteLine("--> You broke free from you digital prison, surroounded by an endless array of humans trapped in life-support pods" +
+                "the room you are in seems endless");
+            if (choices.Contains("choice_1") && (int)choices["choice_1"] == 1)
+            {
+                Console.WriteLine("-->The world you have been experiencing was a simulation. as you free yourself from the pod you hear a distant sound");
+                Console.WriteLine("--> (1) Follow sound");
+                Console.WriteLine("--> (2) Stay Here");
+                int choice_11 = int.Parse(Console.ReadLine());
+                if(choice_11 == 1)
+                {
+                    Console.WriteLine("you leave the room and see a tall figure");
+                }
+            }
+        }
         static void TheEnd()
         {
             Console.WriteLine("-------------------THIS PATH HAS ENDED--------------------");
