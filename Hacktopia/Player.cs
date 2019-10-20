@@ -7,14 +7,14 @@ namespace Hacktopia
     class Player
     {
         public string name;
-        public int health = 10;
-        public int sanity = 10;
-        public int score = 0;
+        public int health;
+        public int sanity;
+        public int score;
 
-        public int Health { get; set; }
+        public int Health { get; set; } = 100;
         public string Name { get; set; }
-        public int Sanity { get; set; }
-        public int Score { get; set; }
+        public int Sanity { get; set; } = 100;
+        public int Score { get; set; } = 0;
 
     }
 }
