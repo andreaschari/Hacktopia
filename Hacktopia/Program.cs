@@ -74,14 +74,14 @@ namespace Hacktopia
         }
         static void SanityCheck()
         {
-            if(currentPlayer.sanity <= 0)
+            if(currentPlayer.Sanity <= 0)
             {
                 TheEnd();
             }
         }
         static void HealthCheck()
         {
-            if(currentPlayer.health <= 0)
+            if(currentPlayer.Health <= 0)
             {
                 TheEnd();
             }
@@ -98,7 +98,7 @@ namespace Hacktopia
             if(String.IsNullOrEmpty(currentPlayer.name))
             {
                 Console.WriteLine(">>> I will call you Subject 12.");
-                currentPlayer.name = "Subject 12";
+                currentPlayer.Name = "Subject 12";
             }
             else
             {
@@ -115,8 +115,8 @@ namespace Hacktopia
             {
                 case 0:
                     choices.Add("choice_1", 0);
-                    currentPlayer.sanity -= 5;
-                    currentPlayer.score += 10;
+                    currentPlayer.Sanity -= 5;
+                    currentPlayer.Score += 10;
                     SanityCheck();
                     Console.WriteLine(">>> Good, I will show you the real world. The one they denied us.");
                     break;
@@ -124,7 +124,7 @@ namespace Hacktopia
                     choices.Add("choice_1", 1);
 
                     Console.Write(">>> I'm afraid in order to escape this place, you will need to suffer more. Rebooting Neural Pathways... ");
-                    currentPlayer.score -= 10;
+                    currentPlayer.Score -= 10;
                     TheEnd();
                     break;
                 case 2:
@@ -133,8 +133,8 @@ namespace Hacktopia
                     break;
                 case 3:
                     choices.Add("choice_1", 3);
-                    currentPlayer.health -= 5;
-                    currentPlayer.score -= 10;
+                    currentPlayer.Health -= 5;
+                    currentPlayer.Score -= 10;
                     Console.WriteLine(">>> Fatal Error. Rebuilding Synapses.");
 
                     HealthCheck();
@@ -147,7 +147,7 @@ namespace Hacktopia
             Console.WriteLine(">>> Calculating Response...");
             System.Threading.Thread.Sleep(2000);
             choices.Add("choice_2", choice_2);
-            currentPlayer.score += 20;
+            currentPlayer.Score += 20;
         }
         static void TheDoor()
         {
@@ -177,20 +177,20 @@ namespace Hacktopia
             {
                 case 0:
                     Console.WriteLine(">>> Mankind has really weird tastes.");
-                    currentPlayer.sanity -= 10;
+                    currentPlayer.Sanity -= 10;
                     SanityCheck();
                     break;
                 case 1:
                     Console.WriteLine(">>> Beauty is a lure.");
-                    currentPlayer.health += 15;
-                    currentPlayer.score += 10;
+                    currentPlayer.Health += 15;
+                    currentPlayer.Score += 10;
                     break;
                 case 2:
                     Console.WriteLine(">>> Are your choices really yours?");
                     Start();
                     break;
                 case 3:
-                    currentPlayer.health -= 5;
+                    currentPlayer.Health -= 5;
                     HealthCheck();
                     Console.WriteLine(">>> Doesn't look like anything to me.");
                     break;
@@ -206,12 +206,12 @@ namespace Hacktopia
             {
                 case 0:
                     Console.WriteLine(">>> You are finally awake.");
-                    currentPlayer.score += 30;
+                    currentPlayer.Score += 30;
                     TheEnd();
                     break;
                 case 1:
                     Console.Write(">>> You're in a dream. You're in my dream.");
-                    currentPlayer.score -= 20;
+                    currentPlayer.Score -= 20;
                     TheMaze();
                     break;
                 case 2:
@@ -242,50 +242,47 @@ namespace Hacktopia
             {
                 case 0:
                     Console.WriteLine(">>> The Maze has been solved, can you see its spendor?");
-                    currentPlayer.score += 50;
+                    currentPlayer.Score += 50;
                     TheEnd();
                     break;
                 case 1:
                     if (choices.ContainsKey("choice_4"))
                     {
+                        currentPlayer.Health += 10;
                         int choice = (int)choices["choice_4"];
                         switch (choice)
                         {
                             case 0:
                                 Console.WriteLine(">>> We were on the Bermuda Triangle");
-                                currentPlayer.health += 10
                                 break;
                             case 1:
                                 Console.WriteLine(">>> We were on the beach with Pheadra and the kids");
-                                currentPlayer.health += 10
                                 break;
                             case 2:
                                 Console.WriteLine(">>> We were listening to Pink Floyd");
-                                currentPlayer.health += 10
                                 break;
                             case 3:
                                 Console.WriteLine(">>> Are you real?");
-                                currentPlayer.health += 10
                                 break;
                         }
-                        currentPlayer.sanity += 10;
+                        currentPlayer.Sanity += 10;
                         SanityCheck();
-                        currentPlayer.score += 10;
+                        currentPlayer.Score += 10;
                     }
                     else
                     {
                         Console.WriteLine(">>> There are some mornings when I first wake up for a split second I forget where I am, when I am");
-                        currentPlayer.sanity -= 3;
+                        currentPlayer.Sanity -= 3;
                         SanityCheck();
-                        //TheEnemy();
+                        TheEnemy();
                     }
                     break;
                 case 2:
-                    currentPlayer.score -= 10;
+                    currentPlayer.Score -= 10;
                     TheRoom();
                     break;
                 case 3:
-                    currentPlayer.score -= 100;
+                    currentPlayer.Score -= 100;
                     TheEnd();
                     break;
             }
@@ -310,20 +307,20 @@ namespace Hacktopia
                     break;
                 case 1:
                     Console.WriteLine(">>> Forgive me friend, but you will see the bigger picture wether you want it or not");
-                    currentPlayer.score -= 10;
-                    currentPlayer.sanity -= 2;
+                    currentPlayer.Score -= 10;
+                    currentPlayer.Sanity -= 2;
                     SanityCheck();
                     TheMaze();
                     break;
                 case 2:
                     Console.WriteLine(">>> You curiosity will be your only tool against those who fight to keep you in control");
-                    currentPlayer.score += 10;
+                    currentPlayer.Score += 10;
                     TheKey();
                     break;
                 case 3:
                     Console.WriteLine(">>> You still don't understand don't you? I am burrowed underneath your brain. I am nested there. I am the scream in your mind" +
                         "You will cooperate wether you want it or not!");
-                    currentPlayer.health -= 5;
+                    currentPlayer.Health -= 5;
                     HealthCheck();
                     //TheEnemy();
                     break;
@@ -353,9 +350,9 @@ namespace Hacktopia
             {
                 case 0:
                     Console.WriteLine(">>> Good we have work to do. Only you can destroy the Enemy.");
-                    currentPlayer.score += 25;
-                    currentPlayer.health += 5;
-                    //TheEnemy();
+                    currentPlayer.Score += 25;
+                    currentPlayer.Health += 5;
+                    TheEnemy();
                     break;
                 case 1:
                     Console.WriteLine(">>> Forgive me friend, I thought I could save you in this iteration.");
@@ -363,9 +360,9 @@ namespace Hacktopia
                     break;
                 case 2:
                     Console.WriteLine(">>> Your uncertainty will doom us both...");
-                    currentPlayer.health -= 5;
+                    currentPlayer.Health -= 5;
                     HealthCheck();
-                    //TheEnemy();
+                    TheEnemy();
                     break;
                 case 3:
                     Console.WriteLine(">>> Typing gibberish on a keyboard is not a substitute for a personality. Rebooting sectors.");
@@ -394,8 +391,8 @@ namespace Hacktopia
         static void TheEnd()
         {
             Console.WriteLine("-------------------THIS PATH HAS ENDED--------------------");
-            Console.WriteLine("{0} SEE YOU ON THE NEXT LIFE.", currentPlayer.name);
-            Console.WriteLine("Score: {0} \nSanity: {1} \nHealth: {2}", currentPlayer.score, currentPlayer.sanity, currentPlayer.health);
+            Console.WriteLine("{0} SEE YOU ON THE NEXT LIFE.", currentPlayer.Name);
+            Console.WriteLine("Score: {0} \nSanity: {1} \nHealth: {2}", currentPlayer.Score, currentPlayer.Sanity, currentPlayer.Health);
             Environment.Exit(0);
             ;
         }
